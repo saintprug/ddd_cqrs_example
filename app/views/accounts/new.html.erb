@@ -1,0 +1,8 @@
+<h1>New Account</h1>
+
+<%= form_tag({controller: "accounts", action: "create"}, method: "post") do %>
+  <%= hidden_field_tag(:account_id, @account_id) %>
+
+  <%= submit_tag("Create account", class: "btn btn-primary") %>
+  <%= link_to 'Back', accounts_path, class: "btn btn-default" %>
+<% end %>

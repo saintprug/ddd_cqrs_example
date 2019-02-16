@@ -1,0 +1,42 @@
+<%= link_to 'View All Accounts', accounts_path, class: "btn btn-default" %>
+<h1>Manage your Account</h1>
+
+<table class="table table-bordered">
+  <tr>
+    <td>UID</td>
+    <td><%= @account.uid %></td>
+  <tr>
+  <tr>
+    <td>Balance</td>
+    <td><%= number_to_currency @account.balance %></td>
+  <tr>
+  <tr>
+    <td>Transaction History</td>
+    <td><%= link_to "View history", history_account_path(@account.uid) %></td>
+  </tr>
+  <tr>
+    <td>
+      Created By
+    </td>
+    <td>
+      <%= @account.created_by || "Unknown" %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Deposit
+    </td>
+    <td>
+      <%= form_tag({controller: "accounts", action: "add_money"}, method: "post") do %>
+        Amount
+        <%= number_field_tag(:amount_to_add, nil, placeholder: 'deposit amount') %><br>
+
+        Description
+        <%= text_field_tag(:description, nil, placeholder: "why..") %>
+
+        <br>
+        <%= submit_tag("Desposit Money", class: "btn btn-sm btn-primary") %>
+      <% end %>
+    </td>
+  </tr>
+<table>

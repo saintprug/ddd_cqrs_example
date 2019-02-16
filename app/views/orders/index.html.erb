@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Orders</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Number</th>
+      <th>Customer</th>
+      <th>State</th>
+      <th>History</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @orders.each do |order| %>
+      <tr>
+        <td><%= link_to order.number || 'Not submitted', order_path(order) %></td>
+        <td><%= order.customer %></td>
+        <td><%= order.state %></td>
+        <td><%= order_history_link(order.uid) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Order', new_order_path, class: "btn btn-primary" %>
+<br/>
+<p>Simulate backgound worker, push
+<%= link_to 'Expire', expire_orders_path, class: "btn", method: :post %>
+to start orders expiration</p>
+
+

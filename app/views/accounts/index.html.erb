@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Accounts</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Account ID</th>
+      <th>Balance</th>
+      <th>Created By</th>
+      <th>History</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @accounts.each do |account| %>
+      <tr>
+        <td><%= link_to account.uid, account_path(account.uid) %></td>
+        <td><%= number_to_currency account.balance %></td>
+        <td><%= account.created_by %></td>
+        <td><%= link_to "View history", history_account_path(account.uid) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Account', new_account_path, class: "btn btn-primary" %>
+<br/>
+
